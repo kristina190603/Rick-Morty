@@ -44,6 +44,7 @@ let list2 = document.querySelector(".list2");
 fetch(API).then((res) =>
   res.json().then((info) => {
     info.results.forEach((item) => {
+      setPerson(item);
       let liName = document.createElement("li");
       let liImage = document.createElement("li");
 
@@ -60,20 +61,6 @@ fetch(API).then((res) =>
   })
 );
 
-let Rick = { name: "Rick Sanchez"};
-
-fetch(API).then((res) =>
-  res.json().then((info) => {
-    info.results.forEach((item) => {
-      let obj = {
-        name: item.name.value,
-        image: item.image.value,
-      };
-      setPerson(obj);
-    });
-  })
-);
-setPerson(Rick);
 
 function setPerson(obj) {
   fetch(APIback, {
@@ -85,9 +72,10 @@ function setPerson(obj) {
   });
 }
 
-
+console.log(list2);
 fetch(APIback).then((data) =>
   data.json().then((info) => {
+    console.log(info);
     info.forEach((item) => {
       let liName = document.createElement("li");
       let liImage = document.createElement("li");
